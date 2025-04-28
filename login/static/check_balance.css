@@ -1,0 +1,91 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #f0f8ff;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  
+  /* Logo */
+  .logo-wrapper {
+    margin-bottom: 30px;
+  }
+  
+  .logo-wrapper img {
+    height: 140px;
+    transition: transform 0.3s ease;
+  }
+  
+  .logo-wrapper img:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Page Title */
+  h2 {
+    font-size: 36px;
+    color: #0072ff;
+    margin-bottom: 25px;
+  }
+  
+  /* Wallet Info */
+  .wallet-container {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px 40px;
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(0, 114, 255, 0.2);
+    text-align: left;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .wallet-container p {
+    font-size: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .wallet-container i {
+    color: #0072ff;
+    font-size: 22px;
+  }
+  
+  /* Back to Home Button */
+.back-btn-container {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background-color: #0077ff;
+  color: white;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 119, 255, 0.3);
+}
+
+.back-btn:hover {
+  background-color: #005ecb;
+  transform: scale(1.05);
+}
+
+.back-btn i {
+  font-size: 18px;
+}

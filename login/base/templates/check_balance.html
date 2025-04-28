@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Wallet | TradeMindsAI</title>
+  <link rel="stylesheet" href="{% static 'check_balance.css' %}" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Logo -->
+  <div class="logo-wrapper">
+    <img src="{% static 'trademindai.io-logo-black.png' %}" alt="TradeMindsAI Logo" />
+  </div>
+
+  <!-- Wallet Section -->
+  <h2>User's Wallet</h2>
+  <div class="wallet-container">
+    <p><i class="fas fa-dollar-sign"></i><strong>Cash Balance:</strong> ${{ cash_balance }}</p>
+    <p><i class="fab fa-btc"></i><strong>BTC Balance:</strong> {{ btc_balance }} BTC</p>
+    <p><i class="fas fa-coins"></i><strong>USDT Balance:</strong> ${{ usdt_balance }}</p>
+  </div>
+
+  <!-- Back to Home Button -->
+  <div class="back-btn-container">
+    <a href="{% url 'home' %}" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+  </div>
+
+</body>
+</html>

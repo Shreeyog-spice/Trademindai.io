@@ -1,0 +1,349 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  color: #222;
+  background-color: #f0f8ff;
+  transition: opacity 1.2s ease;
+  opacity: 0;
+}
+
+body.loaded {
+  opacity: 1;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 40px;
+  animation: fadeSlide 1s ease forwards;
+}
+.logo-wrapper img {
+  height: 160px;
+  transition: transform 0.3s ease;
+}
+.logo-wrapper img:hover {
+  transform: scale(1.1);
+}
+
+/* Nav Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+.nav-links a {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  color: #111;
+  transition: transform 0.3s ease, color 0.3s ease;
+  margin-top: -5px;
+  position: relative;
+  z-index: 1;
+}
+.nav-links a:hover {
+  transform: scale(1.15) !important;
+  color: #0077ff;
+  z-index: 2;
+}
+.nav-links li {
+  display: inline-block;
+}
+
+/* Check Balance Button */
+.check-balance-btn {
+  padding: 8px 16px;
+  background-color: #0077ff;
+  color: white;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 119, 255, 0.3);
+}
+.check-balance-btn:hover {
+  background-color: #005ecb;
+  transform: scale(1.05);
+}
+.check-balance-btn i,
+.check-balance-btn span {
+  font-size: 16px;
+  color: white;
+}
+.check-balance-btn span:hover {
+  color: rgba(255, 255, 255, 0.654);
+}
+
+/* Generic Buttons */
+button {
+  padding: 8px 14px;
+  background-color: #e53935;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #c62828;
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s forwards ease-in;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Main Content */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 20px 60px;
+}
+
+/* Info Section */
+.info-section {
+  max-width: 850px;
+  margin: 0 0 50px;
+  background-color: rgba(255,255,255,0.75);
+  padding: 30px;
+  border-radius: 30px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.info-section h1 {
+  font-size: 38px;
+  margin-bottom: 18px;
+  color: #0072ff;
+}
+.info-section p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #333;
+}
+.info-section.active-box {
+  transform: scale(1.5);
+  box-shadow: 0 20px 60px rgba(0,114,255,0.4);
+}
+
+/* Info Boxes */
+.info-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+.box {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 25px;
+  width: 260px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.box:hover {
+  transform: scale(1.12);
+  box-shadow: 0 12px 30px rgba(0,114,255,0.25);
+}
+.box h2 {
+  margin-bottom: 12px;
+  font-size: 22px;
+  color: #0072ff;
+}
+.box p {
+  font-size: 15px;
+  color: #333;
+}
+.box.active-box {
+  transform: scale(1.2);
+  box-shadow: 0 16px 40px rgba(0,114,255,0.3);
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin-top: 10px;
+}
+.social-icon {
+  font-size: 30px;
+  color: #000;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.social-icon:hover {
+  transform: scale(1.6);
+  color: #005ecb;
+}
+
+/* Claim Button */
+.claim-div {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+.claim-btn {
+  padding: 8px 16px;
+  background-color: #0077ff;
+  color: white;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,119,255,0.3);
+}
+.claim-btn:hover {
+  background-color: #005ecb;
+  transform: scale(1.05);
+}
+.claim-btn i,
+.claim-btn span {
+  font-size: 16px;
+}
+.claim-btn span:hover {
+  color: rgba(255,255,255,0.65);
+}
+
+/* Popup Overlay */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.popup.hidden {
+  display: none;
+}
+
+/* Popup Content Card */
+.popup-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 2rem;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  position: relative;
+  font-family: 'Quicksand', sans-serif;
+}
+.popup-content h2 {
+  margin-bottom: 1rem;
+  color: #0072ff;
+}
+.popup-content h3 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #777;
+}
+.close-btn:hover {
+  color: #333;
+}
+
+/* Today’s Reward Text */
+.today-reward p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Unclaimed Gifts List */
+.unclaimed-gifts {
+  list-style: none;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.unclaimed-gifts li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+.gift-icon {
+  color: #f39c12;
+  margin-right: 0.75rem;
+}
+
+/* Scrollbar for Unclaimed Gifts */
+.unclaimed-gifts::-webkit-scrollbar {
+  width: 6px;
+}
+.unclaimed-gifts::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 3px;
+}
+
+/* Footer Logout */
+.footer-logout {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 60px 0 30px;
+}
+.footer-logout form button {
+  padding: 14px 28px;
+  background-color: #e53935;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.footer-logout form button:hover {
+  background-color: #c62828;
+  transform: scale(1.05);
+}

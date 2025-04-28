@@ -1,0 +1,188 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url("/static/backgroundimg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 20px;
+}
+
+/* Wrapper to stack error and login */
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes popIn {
+    0% {
+        transform: translateY(-15px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Error Container */
+.error-container {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+    animation: popIn 0.4s ease-out;
+    z-index: 10;
+}
+.error-popup {
+    background: rgba(255, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #620707;
+    border: 2px solid rgba(255, 0, 0, 0.3);
+    border-radius: 14px;
+    padding: 16px 24px;
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.15);
+    text-align: center;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 550px;
+    padding: 20px;
+}
+
+/* Login Box */
+.form-section {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    backdrop-filter: blur(14px);
+    padding: 45px 35px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeInUp 0.8s ease forwards;
+    transform: scale(0.98);
+    transition: transform 0.3s ease;
+}
+.form-section:hover {
+    transform: scale(1);
+}
+
+/* Logo */
+.logo-wrapper {
+    margin-bottom: 25px;
+}
+.logo {
+    max-width: 200px;
+    transition: transform 0.3s ease;
+}
+.logo:hover {
+    transform: scale(1.07);
+}
+
+/* Titles */
+.form-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #111;
+}
+.subtitle {
+    font-size: 14px;
+    color: #232020;
+    margin-bottom: 30px;
+}
+
+/* Form Layout */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Input Styling */
+input[type="text"],
+input[type="password"] {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+    background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.submit-btn:hover {
+    background: linear-gradient(90deg, #00b3e6, #005ed6);
+    transform: scale(1.03);
+}
+
+/* —————— NEW: “Or Sign Up” Link/Button —————— */
+.alt-action {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
+}
+.alt-action p {
+    margin-bottom: 8px;
+}
+.alt-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    background: #fff;
+    color: #0072ff;
+    border: 2px solid #0072ff;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+.alt-btn:hover {
+    background: #0072ff;
+    color: #fff;
+}
+
+/* ensure page wrapper bottom spacing */
+.page-wrapper {
+    padding-bottom: 40px;
+}

@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>TradeMindsAI | Signup</title>
+    <link rel="stylesheet" href="{% static 'signup.css' %}" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <div class="page-wrapper">
+        {% if form.errors %}
+        <div class="error-container">
+            <div class="error-popup">
+                ⚠️ Please fix the highlighted errors and try again.
+            </div>
+        </div>
+        {% endif %}
+
+        <main class="container">
+            <section class="form-section animate">
+                <div class="logo-wrapper">
+                    <img src="{% static 'trademindai.io-logo-black.png' %}" alt="TradeMindsAI Logo" class="logo" />
+                </div>
+                <div class="form-wrapper">
+                    <h1 class="form-title">Create Your Account</h1>
+                    <p class="subtitle">Start your trading journey with puzzles</p>
+
+                    <form method="post" action="{% url 'signup' %}">
+                        {% csrf_token %}
+
+                        <input type="text" name="username" placeholder="Username" required />
+                        {% for error in form.username.errors %}
+                        <p class="error-text">{{ error }}</p>
+                        {% endfor %}
+
+                        <input type="password" id="password1" name="password1" placeholder="Password" required />
+                        <div id="password-strength">
+                            <div id="strength-bar"></div>
+                        </div>
+                        <span id="strength-text"></span>
+                        {% for error in form.password1.errors %}
+                        <p class="error-text">{{ error }}</p>
+                        {% endfor %}
+
+                        <input type="password" name="password2" placeholder="Confirm Password" required />
+                        {% for error in form.password2.errors %}
+                        <p class="error-text">{{ error }}</p>
+                        {% endfor %}
+
+                        <button type="submit" class="submit-btn">Sign Up</button>
+
+                        <div class="social-signup">
+                            <p class="or-text">or sign up with</p>
+                            <div class="social-icons">
+                                <a href="#"><img src="{% static 'google-icon.png' %}" alt="Google" /></a>
+                                <a href="#"><img src="{% static 'facebook-icon.png' %}" alt="Facebook" /></a>
+                                <a href="#"><img src="{% static 'github-icon.png' %}" alt="GitHub" /></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById('password1');
+        const strengthBar = document.getElementById('strength-bar');
+        const strengthText = document.getElementById('strength-text');
+
+        passwordInput.addEventListener('input', () => {
+            const val = passwordInput.value;
+            let strength = 0;
+
+            if (val.length >= 8) strength++;
+            if (/[A-Z]/.test(val)) strength++;
+            if (/[0-9]/.test(val)) strength++;
+            if (/[^A-Za-z0-9]/.test(val)) strength++;
+
+            const strengths = ['Too Weak', 'Weak', 'Medium', 'Strong', 'Very Strong'];
+            const colors = ['#ff4d4d', '#ffa94d', '#ffe14d', '#8bc34a', '#4caf50'];
+            strengthBar.style.width = `${(strength / 4) * 100}%`;
+            strengthBar.style.background = colors[strength];
+            strengthText.textContent = strengths[strength];
+        });
+    </script>
+</body>
+</html>

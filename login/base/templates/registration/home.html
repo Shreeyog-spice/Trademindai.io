@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TradeMindsAI | Home</title>
+  <link rel="stylesheet" href="{% static 'home.css' %}" />
+  <link rel="icon" href="{% static 'favicon.ico' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-wrapper">
+      <img src="{% static 'trademindai.io-logo-black.png' %}" alt="TradeMindsAI Logo" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" data-target="box1">Services</a></li>
+      <li><a href="#" data-target="box2">Contact</a></li>
+      <li><a href="#" data-target="box3">Socials</a></li>
+      <li><a href="#" data-target="about">About</a></li>
+      <li>
+        <a href="{% url 'check_balance' %}" class="check-balance-btn">
+          <i class="fas fa-wallet"></i> <span>Check Balance</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <section class="info-section fade-in" id="about">
+      <h1>Welcome to TradeMindsAI</h1>
+      <p>
+        TradeMindsAI is a unique platform that combines trading with gamification. Solve puzzles, learn trading strategies, and level up your financial skills. Whether you're a beginner or experienced trader, our interactive challenges and educational tools help sharpen your edge.
+      </p>
+    </section>
+
+    <section class="info-boxes">
+      <div class="box" id="box1">
+        <h2>Services</h2>
+        <p>Interactive puzzles, tutorials, and trading simulations to improve your skills.</p>
+      </div>
+      <div class="box" id="box2">
+        <h2>Contact</h2>
+        <p>Email: support@trademindsai.io</p>
+      </div>
+      <div class="box" id="box3">
+        <h2>Socials</h2>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram social-icon"></i></a>
+          <a href="#"><i class="fab fa-twitter social-icon"></i></a>
+          <a href="#"><i class="fab fa-linkedin social-icon"></i></a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Claim Reward Button -->
+  <div class="claim-div">
+    <button class="claim-btn" id="claimRewardBtn">
+      <i class="fas fa-gift"></i> <span>Claim Login Reward</span>
+    </button>
+  </div>
+
+  <!-- Reward Popup -->
+  <div id="rewardPopup" class="popup hidden">
+    <div class="popup-content">
+      <button id="closePopupBtn" class="close-btn">&times;</button>
+      <h2>🎁 Your Rewards</h2>
+      <div class="today-reward">
+        <p id="rewardMessage">Loading…</p>
+      </div>
+      <h3>Unclaimed Gifts</h3>
+      <ul id="unclaimedList" class="unclaimed-gifts">
+        <!-- Will be populated by JS -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- Logout -->
+  <div class="footer-logout">
+    <form method="POST" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button type="submit">Logout</button>
+    </form>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("loaded");
+
+      // Toggle boxes/about
+      const links = document.querySelectorAll(".nav-links a[data-target]");
+      const boxes = document.querySelectorAll(".box");
+      const aboutSection = document.getElementById("about");
+      links.forEach(link => {
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          const target = link.dataset.target;
+          if (target === "about") {
+            aboutSection.classList.toggle("active-box");
+            boxes.forEach(b => b.classList.remove("active-box"));
+          } else {
+            boxes.forEach(b => {
+              if (b.id === target) b.classList.toggle("active-box");
+              else b.classList.remove("active-box");
+            });
+            aboutSection.classList.remove("active-box");
+          }
+        });
+      });
+
+      // Reward popup logic
+      const rewardBtn = document.getElementById("claimRewardBtn");
+      const popup = document.getElementById("rewardPopup");
+      const closeBtn = document.getElementById("closePopupBtn");
+      const rewardMessage = document.getElementById("rewardMessage");
+      const unclaimedList = document.getElementById("unclaimedList");
+
+      rewardBtn.addEventListener("click", async () => {
+        try {
+          const res = await fetch("{% url 'get_login_reward' %}", {
+            method: "POST",
+            headers: {
+              "X-CSRFToken": "{{ csrf_token }}",
+              "Content-Type": "application/json"
+            },
+          });
+          const data = await res.json();
+
+          // Today’s reward
+          rewardMessage.textContent = data.message;
+
+          // Upcoming unclaimed gifts
+          unclaimedList.innerHTML = "";
+          data.upcoming_rewards.forEach(item => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+              <i class="fas fa-gift gift-icon"></i>
+              <span>${item.day}: ${item.amount} ${item.currency} (Streak: ${item.streak})</span>
+            `;
+            unclaimedList.appendChild(li);
+          });
+
+          popup.classList.remove("hidden");
+        } catch (err) {
+          console.error("Error fetching reward:", err);
+        }
+      });
+
+      closeBtn.addEventListener("click", () => {
+        popup.classList.add("hidden");
+      });
+    });
+  </script>
+</body>
+</html>
